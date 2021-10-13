@@ -1,0 +1,12 @@
+﻿Public Class User
+    Private _username As String
+
+    Public Property username As String
+        Get
+            Return _username
+        End Get
+        Set
+            _username = value
+        End Set
+    End Property
+End Class

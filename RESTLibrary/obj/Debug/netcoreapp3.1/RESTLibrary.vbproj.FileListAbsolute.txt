@@ -1,0 +1,15 @@
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.exe
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.deps.json
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.runtimeconfig.json
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.runtimeconfig.dev.json
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.dll
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\RESTLibrary.pdb
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.vbproj.AssemblyReference.cache
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.AssemblyInfoInputs.cache
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.AssemblyInfo.vb
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.vbproj.CoreCompileInputs.cache
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.dll
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.pdb
+C:\Users\LC-IPDO-05\source\repos\RESTLibrary\RESTLibrary\obj\Debug\netcoreapp3.1\RESTLibrary.genruntimeconfig.cache
