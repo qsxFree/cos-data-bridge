@@ -19,23 +19,23 @@ Namespace Service.SchoolCashier
                 Throw New CustomerNotFoundException()
             End If
         End Function
-        
-        Async Function RecieveActivationCode(customerActivationCredential As CustomerActivationCredential,token As String) As Task(Of DetailMessage)
+
+        Async Function SendActivationCode(customerActivationCredential As CustomerActivationCredential, token As String) As Task(Of DetailMessage)
             Dim payload = Utils.Json.Serialize(customerActivationCredential)
-            Dim response = Await PostAsync(AppendEndpoint($"{SCASH_ENDPOINT}/send_code/"),payload,WithToken(token))
+            Dim response = Await PostAsync(AppendEndpoint($"{SCASH_ENDPOINT}/send_code/"), payload, WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
                 Try
                     Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
                 Catch ex As Exception
-                    Return New DetailMessage With{
+                    Return New DetailMessage With {
                         .detail = ex.Message
                         }
                 End Try
             End If
         End Function
-        
+
         Async Function  DeactivateCustomer(customerDeactivationCredential As CustomerDeactivationCredential, token As String) As Task(Of DetailMessage)
             Dim payload = Utils.Json.Serialize(customerDeactivationCredential)
             Dim response = Await PostAsync(AppendEndpoint($"{SCASH_ENDPOINT}/deactivate_customer/"),payload,WithToken(token))
