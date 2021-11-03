@@ -4,6 +4,13 @@
     Private _last_name As String
     Private _rfid_key As String
 
+    Public Sub New(username As String, firstName As String, lastName As String, rfidKey As String)
+        _username = username
+        _first_name = firstName
+        _last_name = lastName
+        _rfid_key = rfidKey
+    End Sub
+
     Public Property username As String
         Get
             Return _username

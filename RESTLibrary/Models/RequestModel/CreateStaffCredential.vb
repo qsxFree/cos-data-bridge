@@ -3,6 +3,11 @@
     Private _last_name As String
     Private _role_code As String
 
+    Public Sub New(firstName As String, lastName As String, roleCode As String)
+        _first_name = firstName
+        _last_name = lastName
+        _role_code = roleCode
+    End Sub
 
     Public Property first_name As String
         Get
