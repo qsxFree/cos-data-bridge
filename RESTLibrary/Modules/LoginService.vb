@@ -6,7 +6,7 @@ Namespace Service.Login
         Async Function Login(loginCredential As LoginCredential) As Task(Of Authentication)
             
             Dim payload = Utils.Json.Serialize(loginCredential)
-            Dim response = Await PostAsync(AppendEndpoint("/auth/login/"), payload, WithoutToken())
+            Dim response = Await PostAsync(AppendEndpoint("/auth/management/login/"), payload, WithoutToken())
             If response.Result.StatusCode = Net.HttpStatusCode.OK Then
                 Return Utils.Json.Deserialize(Of Authentication)(response.Body)
             Else
