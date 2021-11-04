@@ -18,7 +18,8 @@ Namespace Service.CanteenManager
         
         ''TODO To be Tested
         Async Function AddCategory(categoryCredential As CategoryCredential,token As String) As Task(Of DetailMessage)
-            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_list/"),WithToken(token))
+            Dim payload = Utils.Json.Serialize(categoryCredential)
+            Dim response = Await PostAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_list/"),payload,WithToken(token))
             If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
@@ -38,7 +39,8 @@ Namespace Service.CanteenManager
         
         ''TODO To be Tested
         Async Function UpdateCategory(categoryCredential As CategoryCredential, categoryId As String ,token As String) As Task(Of DetailMessage)
-            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_detail/{categoryId}/"),WithToken(token))
+            Dim payload = Utils.Json.Serialize(categoryCredential)
+            Dim response = Await PostAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_detail/{categoryId}/"),payload,WithToken(token))
             If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
@@ -46,8 +48,71 @@ Namespace Service.CanteenManager
             End If
         End Function
         
+        ''TODO Add the AddProduct Method here
         
+        ''TODO To be Tested
+        Async Function ProductList(token As String) As Task(Of List(Of ProductResponse))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/product_list/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of ProductResponse))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve product list")
+            End If
+        End Function
         
+        ''TODO Add the UpdateProduct Method here
+        
+        ''TODO To be Tested
+        Async Function AddMenuItem(slugs As MenuSlugs,token As String) As Task(Of DetailMessage)
+            Dim payload = Utils.Json.Serialize(slugs)
+            Dim response = Await PostAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/menu_list/"),payload,WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
+            Else
+                Throw New Exception("Can't update category")
+            End If
+        End Function
+        
+        ''TODO To be Tested
+        Async Function GetMenuToday(token As String) As Task(Of List(Of MenuTodayResponse))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/menu_list/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of MenuTodayResponse))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve today's menu")
+            End If
+        End Function
+        
+        ''TODO To be Tested
+        Async Function SetMenuAvailability(menuId As Int16,menuItemAvailability As SetMenuItemAvailableCredential, token As String) As Task(Of DetailMessage)
+            Dim payload = Utils.Json.Serialize(menuItemAvailability)
+            Dim response = Await PutAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/set_menu_availability/{menuId}/"),payload,WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
+            Else
+                Throw New Exception("Can't modify item availability")
+            End If
+        End Function
+        
+        ''TODO To be Tested
+        Async Function GetProductSalesLogs(token As String) As Task(Of List(Of ProductSales))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/product_sales/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of List(Of ProductSales))(response.Body)
+            Else
+                Throw New Exception("Can't  retrieve product sales log")
+            End If
+        End Function
+
+        ''TODO To be Tested
+        Async Function GetStaffDetail(username As String,token As String) As Task(Of StaffResponse)
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/staff_detail/{username}"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Or response.Result.StatusCode = HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of StaffResponse)(response.Body)
+            Else
+                Throw New Exception("Can't retrieve staff detail")
+            End If
+        End Function
         
         
     End Module

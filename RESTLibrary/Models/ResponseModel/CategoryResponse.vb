@@ -4,13 +4,6 @@
     Private  _slug As String
     Private _date_created As String
 
-    Public Sub New(id As Long, name As String, slug As String, dateCreated As String)
-        _id = id
-        _name = name
-        _slug = slug
-        _date_created = dateCreated
-    End Sub
-
     Public Property id As Long
         Get
             Return _id

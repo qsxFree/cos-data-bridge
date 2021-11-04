@@ -2,6 +2,9 @@
     Private _expiry As String
     Private _token As String
     Private _user As User
+    
+    Public Sub New()
+    End Sub
 
     Public Property expiry As String
         Get
