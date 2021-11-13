@@ -98,6 +98,35 @@ Namespace Service.Admin
             End If
         End Function
         
+        '' TODO To be Tested
+        Async Function GetOrderLogs(token As String) As Task(Of List(Of OrderInfo))
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/ordering/orders/"),WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                return Utils.Json.Deserialize(Of List(Of OrderInfo))(response.Body)
+            Else 
+                Throw New Exception("Cannot retrieve order log")
+            End If
+        End Function
+        
+        Async Function GetProductSalesLogs(token As String) As Task(Of List(Of ProductSales))
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/product_sales/"),WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of List(Of ProductSales))(response.Body)
+            Else
+                Throw New Exception("Can't  retrieve product sales log")
+            End If
+        End Function
+        
+        Async Function GetDailySales(token As String) As Task(Of List(Of DailySalesLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/total_sales/"),WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of List(Of DailySalesLog))(response.Body)
+            Else
+                Throw New Exception("Can't  retrieve daily sales log")
+            End If
+        End Function
+        
+        
         
     End Module
 End Namespace

@@ -1,8 +1,7 @@
-﻿Public Class ProductSales
+﻿Public Class DailySalesLog
     Private _id As Integer
-    Private _product As ProductResponse
-    Private _total_sales As Double
-    Private _quantity As Integer
+    Private _overall_sales As String
+    Private _overall_quantity As Integer
     Private _date_reported As String
 
     Public Property id As Integer
@@ -14,30 +13,21 @@
         End Set
     End Property
 
-    Public Property product As ProductResponse
+    Public Property overall_sales As String
         Get
-            Return _product
+            Return _overall_sales
         End Get
         Set
-            _product = value
+            _overall_sales = value
         End Set
     End Property
 
-    Public Property total_sales As Double
+    Public Property overall_quantity As Integer
         Get
-            Return _total_sales
+            Return _overall_quantity
         End Get
         Set
-            _total_sales = value
-        End Set
-    End Property
-
-    Public Property quantity As Integer
-        Get
-            Return _quantity
-        End Get
-        Set
-            _quantity = value
+            _overall_quantity = value
         End Set
     End Property
 
