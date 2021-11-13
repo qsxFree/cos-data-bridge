@@ -84,5 +84,24 @@ Namespace Service.SchoolCashier
                 End Try    
             End If
         End Function
+        
+        Async Function BalanceLog(token As String) As Task(Of List(Of BalanceInfo))
+            Dim response = Await GetAsync(AppendEndpoint($"{SCASH_ENDPOINT}/customer_balance_log/"), WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of BalanceInfo))(response.Body)
+            Else
+                Throw New Exception("Cannot retrieve balance log")
+            End If
+        End Function
+        
+        Async Function ActivationLog(token As String) As Task(Of List(Of ActivationInfo))
+            Dim response = Await GetAsync(AppendEndpoint($"{SCASH_ENDPOINT}/customer_activation_log/"), WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of ActivationInfo))(response.Body)
+            Else
+                Throw New Exception("Cannot retrieve activation log")
+            End If
+        End Function
+        
     End Module
 End Namespace
