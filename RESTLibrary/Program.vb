@@ -1,12 +1,15 @@
 
+Imports System.IO
+
 Module Program
      Sub Main(args As String()) 
-         Dim authentication  =  Service.Login.Login(New LoginCredential("SCASH-0000", "$password123"))
-         SharedPreference.Auth = authentication.Result
-         Console.WriteLine(SharedPreference.Auth.token)
-         Dim customerAddBalanceCredential = New CustomerAddBalanceCredential("18-1338",500.0)
-         Dim response = Service.SchoolCashier.AddBalance(customerAddBalanceCredential,SharedPreference.Auth.token)
-         Console.WriteLine(response.Result.detail)
+         Dim token = "5e888f7ddca7e427e7719b55273bc60504d2691e012b743fcf6ae611b036d7fb"
+         Dim path = "C:\Users\LC-IPDO-05\Pictures\patrick-tomasso-208114-unsplash.jpg"
+         Dim file = New FileStream(path,FileMode.Open)
+         
+         Dim message = Service.CanteenManager.AddProduct("Sinangag na Rice", 25.0, file, token)
+         Console.WriteLine(message.Result.detail)
+         
     End Sub
      
 End Module

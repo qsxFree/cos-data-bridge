@@ -1,4 +1,7 @@
-﻿Imports System.Net
+﻿Imports System.IO
+Imports System.Net
+Imports System.Net.Http
+Imports System.Net.Http.Headers
 Imports Utils.WebRequest
 
 Namespace Service.CanteenManager
@@ -114,6 +117,27 @@ Namespace Service.CanteenManager
             End If
         End Function
         
+        
+        Async Function AddProduct(name As String, price As Double, fileData As FileStream,token As String) As Task(Of DetailMessage)
+         
+            Dim form  = New MultipartFormDataContent()
+            form.Add(New StreamContent(fileData),"img",fileData.Name)
+            form.Add(New StringContent(name),"name")
+            form.Add(New StringContent(price.ToString()),"price")
+            form.Headers.ContentType.MediaType = "multipart/form-data"
+            
+            Dim client = New HttpClient()
+            client.DefaultRequestHeaders.Add("Authorization",$"Token {token}")
+            
+            Dim httpResponse = Await client.PostAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/product_list/"),form)
+            If httpResponse.StatusCode = HttpStatusCode.OK Or httpResponse.StatusCode = HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of DetailMessage)(Await httpResponse.Content.ReadAsStringAsync())
+            ElseIf httpResponse.StatusCode = HttpStatusCode.BadRequest Then
+                Return Utils.Json.Deserialize(Of DetailMessage)(Await httpResponse.Content.ReadAsStringAsync())
+            Else
+                Throw New Exception("Can't  retrieve product sales log")
+            End If
+        End Function
         
     End Module
 End Namespace

@@ -52,19 +52,30 @@ Namespace Global.Utils
             End Function
         
             Public Function WithToken(token As String) As Options
-                Dim options = New Utils.WebRequest.Options With {
+                Dim options = New Options With {
                         .UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0",
-                        .ContentType = Utils.WebRequest.ContentType.ApplicationJson,
-                        .Headers = New System.Net.WebHeaderCollection From {
-                        {"Authorization", $"Token {token}"}
+                        .ContentType = ContentType.ApplicationJson,
+                        .Headers = New Net.WebHeaderCollection From {
+                            {"Authorization", $"Token {token}"}
+                        }}
+                return options
+            End Function
+            
+            Public Function FormBased(token As String) As Options
+                Dim options = New Options With {
+                        .UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0",
+                        .ContentType = ContentType.MultipartFormData,
+                        .Headers = New Net.WebHeaderCollection From {
+                            {"Authorization", $"Token {token}"},
+                            {"Content-type","multipart/form-data"}
                         }}
                 return options
             End Function
         
             Public Function WithoutToken() As Options
-                Dim options = New Utils.WebRequest.Options With {
+                Dim options = New Options With {
                         .UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0",
-                        .ContentType = Utils.WebRequest.ContentType.ApplicationJson
+                        .ContentType = ContentType.ApplicationJson
                         }
                 return options
             End Function
@@ -414,6 +425,7 @@ Namespace Global.Utils
             Public Const ApplicationUrlEncoded As String = "application/x-www-form-urlencoded"
             Public Const ApplicationJson As String = "application/json"
             Public Const TextXml As String = "text/xml"
+            Public Const MultipartFormData As String = "multipart/form-data"
         End Class
 
         Public Enum Method
