@@ -1,5 +1,5 @@
 ﻿Public Class ProductResponse
-    Private _id As Int64
+    Private _id As Integer
     Private _name As String
     Private _slug As String
     Private _img As String
