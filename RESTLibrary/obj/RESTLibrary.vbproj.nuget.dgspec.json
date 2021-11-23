@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LC-IPDO-05\\source\\repos\\RESTLibrary\\RESTLibrary\\RESTLibrary.vbproj": {}
+    "D:\\Projects\\NET\\RESTLibrary\\RESTLibrary.vbproj": {}
   },
   "projects": {
-    "C:\\Users\\LC-IPDO-05\\source\\repos\\RESTLibrary\\RESTLibrary\\RESTLibrary.vbproj": {
+    "D:\\Projects\\NET\\RESTLibrary\\RESTLibrary.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LC-IPDO-05\\source\\repos\\RESTLibrary\\RESTLibrary\\RESTLibrary.vbproj",
+        "projectUniqueName": "D:\\Projects\\NET\\RESTLibrary\\RESTLibrary.vbproj",
         "projectName": "RESTLibrary",
-        "projectPath": "C:\\Users\\LC-IPDO-05\\source\\repos\\RESTLibrary\\RESTLibrary\\RESTLibrary.vbproj",
-        "packagesPath": "C:\\Users\\LC-IPDO-05\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LC-IPDO-05\\source\\repos\\RESTLibrary\\RESTLibrary\\obj\\",
+        "projectPath": "D:\\Projects\\NET\\RESTLibrary\\RESTLibrary.vbproj",
+        "packagesPath": "C:\\Users\\63916\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\NET\\RESTLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LC-IPDO-05\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\63916\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

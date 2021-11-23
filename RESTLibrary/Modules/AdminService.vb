@@ -108,6 +108,7 @@ Namespace Service.Admin
             End If
         End Function
         
+        '' TODO To be Tested
         Async Function GetProductSalesLogs(token As String) As Task(Of List(Of ProductSales))
             Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/product_sales/"),WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
@@ -117,6 +118,7 @@ Namespace Service.Admin
             End If
         End Function
         
+        '' TODO To be Tested
         Async Function GetDailySales(token As String) As Task(Of List(Of DailySalesLog))
             Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/total_sales/"),WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
