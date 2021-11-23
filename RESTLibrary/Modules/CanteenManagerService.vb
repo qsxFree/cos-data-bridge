@@ -245,6 +245,42 @@ Namespace Service.CanteenManager
             End If
         End Function
 
+        ''TODO To be Tested
+        Async Function GetStaffManagementLog(token As String) As Task(Of List(Of StaffManagementLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/staff_mngmnt_log/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of StaffManagementLog))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve staff management log")
+            End If
+        End Function
         
+        ''TODO To be Tested
+        Async Function GetProductManagementLog(token As String) As Task(Of List(Of ProductManagementLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/product_mngmnt_log/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of ProductManagementLog))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve product management log")
+            End If
+        End Function
+        
+        Async Function GetCategoryManagementLog(token As String) As Task(Of List(Of CategoryManagementLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_mngmnt_log/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of CategoryManagementLog))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve category management log")
+            End If
+        End Function
+        
+        Async Function GetMenuManagementLog(token As String) As Task(Of List(Of MenuManagementLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/category_mngmnt_log/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of MenuManagementLog))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve menu management log")
+            End If
+        End Function
     End Module
 End Namespace
