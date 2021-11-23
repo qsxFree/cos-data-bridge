@@ -244,6 +244,27 @@ Namespace Service.CanteenManager
                 Throw New Exception("Can't delete menu item")
             End If
         End Function
+        
+        '' TODO To be Tested
+        Async Function GetDailySales(token As String) As Task(Of List(Of DailySalesLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/daily_sales/"),WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of List(Of DailySalesLog))(response.Body)
+            Else
+                Throw New Exception("Can't  retrieve daily sales log")
+            End If
+        End Function
+        
+        ''TODO To be Tested
+        ''Monitor the Object serialization and its component
+        Async Function GetMenuLogs(token As String) As Task(Of List(Of MenuTodayResponse))
+            Dim response = Await GetAsync(AppendEndpoint($"{CMNGR_ENDPOINT}/menu_logs/"),WithToken(token))
+            If response.Result.StatusCode = HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of MenuTodayResponse))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve menu logs")
+            End If
+        End Function
 
         ''TODO To be Tested
         Async Function GetStaffManagementLog(token As String) As Task(Of List(Of StaffManagementLog))

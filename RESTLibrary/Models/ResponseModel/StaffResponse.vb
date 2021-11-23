@@ -1,5 +1,5 @@
 ﻿Public Class StaffResponse
-    Private _fk_staff As Int64
+    Private _fk_staff As Integer
     Private _user_info As StaffInfo
     Private _address As String
     Private _role_code As String

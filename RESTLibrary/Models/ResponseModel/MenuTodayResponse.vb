@@ -1,5 +1,5 @@
 ﻿Public Class MenuTodayResponse
-    Private _id As Int64
+    Private _id As Integer
     Private _product As ProductResponse
     Private _category As CategoryResponse
     Private _rating As Double

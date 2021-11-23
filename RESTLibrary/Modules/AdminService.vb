@@ -120,7 +120,7 @@ Namespace Service.Admin
         
         '' TODO To be Tested
         Async Function GetDailySales(token As String) As Task(Of List(Of DailySalesLog))
-            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/total_sales/"),WithToken(token))
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/daily_sales/"),WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of List(Of DailySalesLog))(response.Body)
             Else
@@ -128,7 +128,24 @@ Namespace Service.Admin
             End If
         End Function
         
+        '' TODO To be Tested
+        Async Function GetProfile(token As String) As Task(Of StaffResponse)
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/profile/"), WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                return Utils.Json.Deserialize(Of StaffResponse)(response.Body)
+            Else 
+                Throw New Exception("Cannot retrieve profile")
+            End If
+        End Function
         
+        Async Function GetStaffManagementLog(token As String) As Task(Of List(Of StaffManagementLog))
+            Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/staff_mngmnt_log/"),WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                Return Utils.Json.Deserialize(Of List(Of StaffManagementLog))(response.Body)
+            Else
+                Throw New Exception("Can't retrieve staff management log")
+            End If
+        End Function
         
     End Module
 End Namespace

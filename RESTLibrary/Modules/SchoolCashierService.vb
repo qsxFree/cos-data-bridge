@@ -103,5 +103,15 @@ Namespace Service.SchoolCashier
             End If
         End Function
         
+        '' TODO To be Tested
+        Async Function GetProfile(token As String) As Task(Of StaffResponse)
+            Dim response = Await GetAsync(AppendEndpoint($"{SCASH_ENDPOINT}/profile/"), WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+                return Utils.Json.Deserialize(Of StaffResponse)(response.Body)
+            Else 
+                Throw New Exception("Cannot retrieve profile")
+            End If
+        End Function
+        
     End Module
 End Namespace
