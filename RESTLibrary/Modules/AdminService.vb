@@ -60,7 +60,7 @@ Namespace Service.Admin
         Async Function CreateStaff(createStaffCredential As CreateStaffCredential, token As String) As Task(Of Staff)
             Dim payload = Utils.Json.Serialize(createStaffCredential)
             Dim response = Await PostAsync(AppendEndpoint($"{ADMN_ENDPOINT}/staffs/"), payload, WithToken(token))
-            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of Staff)(response.Body)
             Else
                 Throw New Exception("Can't create new staff")  
