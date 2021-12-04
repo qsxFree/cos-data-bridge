@@ -55,7 +55,8 @@ Namespace Service.CanteenCashier
         '' TODO To be Tested
         '' TODO Check the if the request will work with a given payload
         Async Function CancelOrder(orderId As Integer, token As String) As Task(Of DetailMessage)
-            Dim response = Await PutAsync(AppendEndpoint($"{CCASH_ENDPOINT}/cancel_order/{orderId}/"),"", WithToken(token))
+            Dim payload =  Utils.Json.Serialize(New Status("CANCELLED"))
+            Dim response = Await PutAsync(AppendEndpoint($"{CCASH_ENDPOINT}/cancel_order/{orderId}/"),payload, WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
