@@ -64,5 +64,15 @@ Namespace Service.CanteenCashier
             End If
         End Function
         
+        Async Function OrderMenu(orderCredential As OrderCredentials,token As String) As Task(Of DetailMessage)
+            Dim payload = Utils.Json.Serialize(orderCredential)
+            Dim response = Await PostAsync(AppendEndpoint($"{CCASH_ENDPOINT}/order_menu/"),payload,WithToken(token))
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
+                Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
+            Else
+                Throw New Exception("Can't add order")
+            End If
+        End Function
+        
     End Module
 End Namespace
