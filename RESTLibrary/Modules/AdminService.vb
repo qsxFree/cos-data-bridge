@@ -15,7 +15,7 @@ Namespace Service.Admin
         Async Function CreateCustomer(createCustomerCredential As CreateCustomerCredential, token As String) As Task(Of DetailMessage)
             Dim payload = Utils.Json.Serialize(createCustomerCredential)
             Dim response = Await PostAsync(AppendEndpoint($"{ADMN_ENDPOINT}/customers/"), payload, WithToken(token))
-            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
                 Try
@@ -31,7 +31,7 @@ Namespace Service.Admin
         '' TODO To be Tested
         Async Function GetCustomer(username As String , token As String ) As Task(Of Customer)
             Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/customers/{username}/"), WithToken(token))
-            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+            If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of Customer)(response.Body)
             Else
                 Throw New CustomerNotFoundException()
@@ -42,7 +42,7 @@ Namespace Service.Admin
         Async Function UpdateCustomer(createCustomerCredential As CreateCustomerCredential, username As String, token As String) As Task(Of DetailMessage)
             Dim payload = Utils.Json.Serialize(createCustomerCredential)
             Dim response = Await PutAsync(AppendEndpoint($"{ADMN_ENDPOINT}/customers/{username}/"), payload, WithToken(token))
-            If response.Result.StatusCode = Net.HttpStatusCode.OK Then
+            If response.Result.StatusCode = Net.HttpStatusCode.OK  Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
                 Return Utils.Json.Deserialize(Of DetailMessage)(response.Body)
             Else
                 Try
