@@ -128,7 +128,6 @@ Namespace Service.CanteenManager
         End Function
         
         
-        
         ''TODO To be Tested
         ''Monitor the Object serialization and its component
         Async Function GetMenuToday(token As String) As Task(Of List(Of MenuTodayResponse))

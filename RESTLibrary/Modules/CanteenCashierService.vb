@@ -12,10 +12,10 @@ Namespace Service.CanteenCashier
             End If
         End Function
         
-        Async Function GetMenuList(token As String) As Task(Of StaffResponse)
+        Async Function GetMenuList(token As String) As Task(Of List(Of MenuTodayResponse))
             Dim response = Await GetAsync(AppendEndpoint($"{CCASH_ENDPOINT}/menu_list/"), WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Then
-                return Utils.Json.Deserialize(Of StaffResponse)(response.Body)
+                return Utils.Json.Deserialize(Of List(Of MenuTodayResponse))(response.Body)
             Else 
                 Throw New Exception("Cannot retrieve profile")
             End If
