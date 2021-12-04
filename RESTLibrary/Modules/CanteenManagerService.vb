@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports System.Net.Http
-Imports System.Net.Http.Headers
 Imports Utils.WebRequest
 
 Namespace Service.CanteenManager
@@ -82,12 +81,18 @@ Namespace Service.CanteenManager
         End Function
         
         ''TODO To be Tested
-        Async Function UpdatePRoduct(productCredential As ProductCredential, slug As String,token As String) As Task(Of DetailMessage)
-            Dim file = New FileStream(productCredential.img,FileMode.Open)
-            Dim form  = New MultipartFormDataContent()
-            form.Add(New StreamContent(file),"img",file.Name)
-            form.Add(New StringContent(productCredential.name),"name")
-            form.Add(New StringContent(productCredential.price.ToString()),"price")
+        Async Function UpdateProduct(productCredential As ProductCredential, slug As String, token As String) As Task(Of DetailMessage)
+
+            Dim form = New MultipartFormDataContent()
+            If productCredential.img IsNot Nothing Then
+                Dim file = New FileStream(productCredential.img, FileMode.Open)
+                form.Add(New StreamContent(file), "img", file.Name)
+            Else
+                form.Add(New StringContent(""), "img")
+            End If
+
+            form.Add(New StringContent(productCredential.name), "name")
+            form.Add(New StringContent(productCredential.price.ToString()), "price")
             form.Headers.ContentType.MediaType = "multipart/form-data"
             
             Dim client = New HttpClient()
