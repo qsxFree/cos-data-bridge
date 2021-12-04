@@ -12,7 +12,6 @@ Namespace Service.Admin
             End If
         End Function
         
-        '' TODO To be Tested
         Async Function CreateCustomer(createCustomerCredential As CreateCustomerCredential, token As String) As Task(Of DetailMessage)
             Dim payload = Utils.Json.Serialize(createCustomerCredential)
             Dim response = Await PostAsync(AppendEndpoint($"{ADMN_ENDPOINT}/customers/"), payload, WithToken(token))
@@ -108,7 +107,6 @@ Namespace Service.Admin
             End If
         End Function
         
-        '' TODO To be Tested
         Async Function GetProductSalesLogs(token As String) As Task(Of List(Of ProductSales))
             Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/product_sales/"),WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
@@ -118,7 +116,6 @@ Namespace Service.Admin
             End If
         End Function
         
-        '' TODO To be Tested
         Async Function GetDailySales(token As String) As Task(Of List(Of DailySalesLog))
             Dim response = Await GetAsync(AppendEndpoint($"{ADMN_ENDPOINT}/sales/daily_sales/"),WithToken(token))
             If response.Result.StatusCode = Net.HttpStatusCode.OK Or response.Result.StatusCode = Net.HttpStatusCode.Created Then
