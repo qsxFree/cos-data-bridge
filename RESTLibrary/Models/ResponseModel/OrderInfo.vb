@@ -1,7 +1,7 @@
 ﻿Public Class OrderInfo
     Private _id As Integer
-    Private _fk_cashier As Integer
-    Private _fk_customer As Integer
+    Private _cashier As String
+    Private _customer As String
     Private _items As List(Of OrderItem)
     Private _account_based As Boolean
     Private _total_price As String
@@ -17,21 +17,21 @@
         End Set
     End Property
 
-    Public Property fk_cashier As Integer
+    Public Property cashier As String
         Get
-            Return _fk_cashier
+            Return _cashier
         End Get
         Set
-            _fk_cashier = value
+            _cashier = value
         End Set
     End Property
 
-    Public Property fk_customer As Integer
+    Public Property customer As String
         Get
-            Return _fk_customer
+            Return _customer
         End Get
         Set
-            _fk_customer = value
+            _customer = value
         End Set
     End Property
 
